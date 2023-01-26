@@ -1,0 +1,8 @@
+*.iml
+*.log
+**/target/**
+**.idea
+/target/
+/module-ear/target/
+/module-web/target/
+/module-ejb/target/
