@@ -1,24 +1,24 @@
 package com.github.rongaru.functional.utility;
 
-import com.github.rongaru.functional.executors.RunnableExecutor;
-import com.github.rongaru.functional.interfaces.Runnable;
-
 public class RunnableUtility {
 
+    public static void run( ) {
+    }
+
     public static void run( Runnable runnable ) {
-        RunnableExecutor.executeOrElseThrow( runnable );
+        runnable.run( );
     }
 
     public static void runOnTrue( boolean condition, Runnable runnable ) {
-        RunnableExecutor.executeOrElseThrow( condition ? runnable : ( ) -> { } );
+        run( condition ? runnable : RunnableUtility :: run );
     }
 
     public static void runOnFalse( boolean condition, Runnable runnable ) {
-        RunnableExecutor.executeOrElseThrow( condition ? ( ) -> { } : runnable );
+        run( condition ? RunnableUtility :: run : runnable );
     }
 
-    public static void runOnTrueOrElse( boolean condition, Runnable runnableOnTrue, Runnable runnableOnElse ) {
-        RunnableExecutor.executeOrElseThrow( condition ? runnableOnTrue : runnableOnElse );
+    public static void runOnTrueOrElse( boolean condition, Runnable runnableOnTrue, Runnable runnableOnFalse ) {
+        run( condition ? runnableOnTrue : runnableOnFalse );
     }
 
 }

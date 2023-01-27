@@ -1,42 +1,61 @@
 package com.github.rongaru.functional.utility;
 
-import com.github.rongaru.functional.executors.ConsumerExecutor;
-import com.github.rongaru.functional.interfaces.Consumer;
-
 import java.util.Arrays;
+import java.util.List;
+import java.util.function.Consumer;
 
 public class ConsumerUtility {
 
-    public static < T > void accept( T arg, Consumer< T > consumer ) {
-        ConsumerExecutor.executeOrElseThrow( arg, consumer );
+    /**
+     * @param var T
+     * @implSpec Methods allows consumers.
+     */
+    public static < T > void accept( T var ) {
+
     }
 
-    public static < T > void acceptOnTrue( boolean condition, T arg, Consumer< T > consumer ) {
-        ConsumerExecutor.executeOrElseThrow( arg, condition ? consumer : val -> { } );
+    public static < T > void accept( T var, Consumer< T > consumer ) {
+        consumer.accept( var );
     }
 
-    public static < T > void acceptOnFalse( boolean condition, T arg, Consumer< T > consumer ) {
-        ConsumerExecutor.executeOrElseThrow( arg, condition ? val -> { } : consumer );
+    /**
+     * @param var T
+     * @implSpec Methods allow conditional consumers.
+     */
+    public static < T > void acceptOnTrue( boolean condition, T var, Consumer< T > consumer ) {
+        accept( var, condition ? consumer : ConsumerUtility :: accept );
     }
 
-    public static < T > void acceptMultipleTimes( T arg, Consumer< T > consumer1, Consumer< T > consumer2 ) {
-        Arrays.asList( consumer1, consumer2 ).forEach( consumer -> ConsumerExecutor.executeOrElseThrow( arg, consumer ) );
+    public static < T > void acceptOnFalse( boolean condition, T var, Consumer< T > consumer ) {
+        accept( var, condition ? ConsumerUtility :: accept : consumer );
     }
 
-    public static < T > void acceptMultipleTimes( T arg, Consumer< T > consumer1, Consumer< T > consumer2, Consumer< T > consumer3 ) {
-        Arrays.asList( consumer1, consumer2, consumer3 ).forEach( consumer -> ConsumerExecutor.executeOrElseThrow( arg, consumer ) );
+    public static < T > void acceptOnTrueOrElse( boolean condition, T var, Consumer< T > consumerOnTrue, Consumer< T > consumerOnFalse ) {
+        accept( var, condition ? consumerOnTrue : consumerOnFalse );
     }
 
-    public static < T > void acceptOnTrueOrElse( boolean condition, T arg, Consumer< T > consumerOnTrue, Consumer< T > consumerOnElse ) {
-        ConsumerExecutor.executeOrElseThrow( arg, condition ? consumerOnTrue : consumerOnElse );
+    /**
+     * @param var T
+     * @implSpec Methods allow multiple consumers.
+     */
+    public static < T > void acceptForEach( T var, List< Consumer< T > > consumers ) {
+        consumers.forEach( consumer -> consumer.accept( var ) );
     }
 
-    public static < T > void acceptMultipleTimes( T arg, Consumer< T > consumer1, Consumer< T > consumer2, Consumer< T > consumer3, Consumer< T > consumer4 ) {
-        Arrays.asList( consumer1, consumer2, consumer3, consumer4 ).forEach( consumer -> ConsumerExecutor.executeOrElseThrow( arg, consumer ) );
+    public static < T > void acceptForEach( T var, Consumer< T > consumer1, Consumer< T > consumer2 ) {
+        acceptForEach( var, Arrays.asList( consumer1, consumer2 ) );
     }
 
-    public static < T > void acceptMultipleTimes( T arg, Consumer< T > consumer1, Consumer< T > consumer2, Consumer< T > consumer3, Consumer< T > consumer4, Consumer< T > consumer5 ) {
-        Arrays.asList( consumer1, consumer2, consumer3, consumer4, consumer5 ).forEach( consumer -> ConsumerExecutor.executeOrElseThrow( arg, consumer ) );
+    public static < T > void acceptForEach( T var, Consumer< T > consumer1, Consumer< T > consumer2, Consumer< T > consumer3 ) {
+        acceptForEach( var, Arrays.asList( consumer1, consumer2, consumer3 ) );
+    }
+
+    public static < T > void acceptForEach( T var, Consumer< T > consumer1, Consumer< T > consumer2, Consumer< T > consumer3, Consumer< T > consumer4 ) {
+        acceptForEach( var, Arrays.asList( consumer1, consumer2, consumer3, consumer4 ) );
+    }
+
+    public static < T > void acceptForEach( T var, Consumer< T > consumer1, Consumer< T > consumer2, Consumer< T > consumer3, Consumer< T > consumer4, Consumer< T > consumer5 ) {
+        acceptForEach( var, Arrays.asList( consumer1, consumer2, consumer3, consumer4, consumer5 ) );
     }
 
 }
