@@ -10,7 +10,6 @@ public class FunctionalUtility {
     /**
      * @param supplier Suppler
      * @param consumer Consumer
-     * @implSpec Method allow supplier.
      */
     public static < T > void getThenAccept( Supplier< T > supplier, Consumer< T > consumer ) {
         consumer.accept( supplier.get( ) );
@@ -27,7 +26,6 @@ public class FunctionalUtility {
     /**
      * @param function Function
      * @param consumer Consumer
-     * @implSpec Method allow function.
      */
     public static < T, U > void applyThenAccept( T var, Function< T, U > function, Consumer< U > consumer ) {
         consumer.accept( function.apply( var ) );
@@ -44,7 +42,6 @@ public class FunctionalUtility {
     /**
      * @param function BiFunction
      * @param consumer Consumer
-     * @implSpec Method allow function.
      */
     public static < T, U, R > void applyThenAccept( T var1, U var2, BiFunction< T, U, R > function, Consumer< R > consumer ) {
         consumer.accept( function.apply( var1, var2 ) );
@@ -61,7 +58,6 @@ public class FunctionalUtility {
     /**
      * @param function TriFunction
      * @param consumer Consumer
-     * @implSpec Method allow function.
      */
     public static < T, U, V, R > void applyThenAccept( T var1, U var2, V var3, TriFunction< T, U, V, R > function, Consumer< R > consumer ) {
         consumer.accept( function.apply( var1, var2, var3 ) );
@@ -78,7 +74,6 @@ public class FunctionalUtility {
     /**
      * @param consumer Consumer
      * @param function TriFunction
-     * @implSpec Method allow consumer.
      */
     public static < T, U, V, R > R acceptThenApply( T var1, U var2, V var3, TriConsumer< T, U, V > consumer, TriFunction< T, U, V, R > function ) {
         consumer.accept( var1, var2, var3 );

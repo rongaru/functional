@@ -11,7 +11,6 @@ public class TriConsumerUtility {
      * @param var1 T
      * @param var2 U
      * @param var3 V
-     * @implSpec Methods allows consumers.
      */
     public static < T, U, V > void accept( T var1, U var2, V var3 ) {
 
@@ -25,7 +24,6 @@ public class TriConsumerUtility {
      * @param var1 T
      * @param var2 U
      * @param var3 V
-     * @implSpec Methods allow conditional consumers.
      */
     public static < T, U, V > void acceptOnTrue( boolean condition, T var1, U var2, V var3, TriConsumer< T, U, V > consumer ) {
         accept( var1, var2, var3, condition ? consumer : TriConsumerUtility :: accept );
@@ -42,7 +40,7 @@ public class TriConsumerUtility {
     /**
      * @param var1 T
      * @param var2 U
-     * @implSpec Methods allow multiple consumers.
+     * @param var3 V
      */
     public static < T, U, V > void acceptForEach( T var1, U var2, V var3, List< TriConsumer< T, U, V > > consumers ) {
         consumers.forEach( consumer -> consumer.accept( var1, var2, var3 ) );

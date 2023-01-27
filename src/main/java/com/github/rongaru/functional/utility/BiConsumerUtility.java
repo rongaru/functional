@@ -9,7 +9,6 @@ public class BiConsumerUtility {
     /**
      * @param var1 T
      * @param var2 U
-     * @implSpec Methods allows consumers.
      */
     public static < T, U > void accept( T var1, U var2 ) {
 
@@ -22,7 +21,6 @@ public class BiConsumerUtility {
     /**
      * @param var1 T
      * @param var2 U
-     * @implSpec Methods allow conditional consumers.
      */
     public static < T, U > void acceptOnTrue( boolean condition, T var1, U var2, BiConsumer< T, U > consumer ) {
         accept( var1, var2, condition ? consumer : BiConsumerUtility :: accept );
@@ -39,7 +37,6 @@ public class BiConsumerUtility {
     /**
      * @param var1 T
      * @param var2 U
-     * @implSpec Methods allow multiple consumers.
      */
     public static < T, U > void acceptForEach( T var1, U var2, List< BiConsumer< T, U > > consumers ) {
         consumers.forEach( consumer -> consumer.accept( var1, var2 ) );

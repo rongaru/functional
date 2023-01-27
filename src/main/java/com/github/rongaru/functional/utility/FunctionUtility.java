@@ -8,7 +8,6 @@ public class FunctionUtility {
     /**
      * @param var T
      * @return Type R
-     * @implSpec Methods allows functions.
      */
     public static < T, R > R apply( T var, Function< T, R > function ) {
         return function.apply( var );
@@ -17,7 +16,6 @@ public class FunctionUtility {
     /**
      * @param var T
      * @return Type R
-     * @implSpec Methods allows conditional functions.
      */
     public static < T, R > R applyOnTrue( boolean condition, T var, Function< T, R > function ) {
         return condition ? function.apply( var ) : null;
@@ -50,7 +48,6 @@ public class FunctionUtility {
     /**
      * @param var T
      * @return Type R
-     * @implSpec Methods allows multiple functions.
      */
     public static < T, U, R > R applyMultipleTimes( T var, Function< T, U > function1, Function< U, R > function2 ) {
         return function2.apply( function1.apply( var ) );

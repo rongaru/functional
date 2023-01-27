@@ -8,7 +8,6 @@ public class ConsumerUtility {
 
     /**
      * @param var T
-     * @implSpec Methods allows consumers.
      */
     public static < T > void accept( T var ) {
 
@@ -20,7 +19,6 @@ public class ConsumerUtility {
 
     /**
      * @param var T
-     * @implSpec Methods allow conditional consumers.
      */
     public static < T > void acceptOnTrue( boolean condition, T var, Consumer< T > consumer ) {
         accept( var, condition ? consumer : ConsumerUtility :: accept );
@@ -36,7 +34,6 @@ public class ConsumerUtility {
 
     /**
      * @param var T
-     * @implSpec Methods allow multiple consumers.
      */
     public static < T > void acceptForEach( T var, List< Consumer< T > > consumers ) {
         consumers.forEach( consumer -> consumer.accept( var ) );
