@@ -3,10 +3,7 @@ package com.github.rongaru.functional.wrapper;
 import com.github.rongaru.functional.exceptional.*;
 import com.github.rongaru.functional.executors.*;
 
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
+import java.util.function.*;
 
 public class Exceptional {
 
@@ -28,6 +25,18 @@ public class Exceptional {
 
     public static < T, R > Function< T, R > function( ExceptionalFunction< T, R > function ) {
         return var -> ExceptionalFunctionExecutor.execute( var, function );
+    }
+
+    public static < T, U > BiConsumer< T, U > biConsumer( ExceptionalBiConsumer< T, U > consumer ) {
+        return ( var1, var2 ) -> ExceptionalBiConsumerExecutor.execute( var1, var2, consumer );
+    }
+
+    public static < T, U > BiPredicate< T, U > biPredicate( ExceptionalBiPredicate< T, U > predicate ) {
+        return ( var1, var2 ) -> ExceptionalBiPredicateExecutor.execute( var1, var2, predicate );
+    }
+
+    public static < T, U, R > BiFunction< T, U, R > biFunction( ExceptionalBiFunction< T, U, R > function ) {
+        return ( var1, var2 ) -> ExceptionalBiFunctionExecutor.execute( var1, var2, function );
     }
 
 }
