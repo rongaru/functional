@@ -2,6 +2,9 @@ package com.github.rongaru.functional.wrapper;
 
 import com.github.rongaru.functional.exceptional.*;
 import com.github.rongaru.functional.executors.*;
+import com.github.rongaru.functional.interfaces.TriConsumer;
+import com.github.rongaru.functional.interfaces.TriFunction;
+import com.github.rongaru.functional.interfaces.TriPredicate;
 
 import java.util.function.*;
 
@@ -37,6 +40,18 @@ public class Exceptional {
 
     public static < T, U, R > BiFunction< T, U, R > biFunction( ExceptionalBiFunction< T, U, R > function ) {
         return ( var1, var2 ) -> ExceptionalBiFunctionExecutor.execute( var1, var2, function );
+    }
+
+    public static < T, U, V > TriConsumer< T, U, V > triConsumer( ExceptionalTriConsumer< T, U, V > consumer ) {
+        return ( var1, var2, var3 ) -> ExceptionalTriConsumerExecutor.execute( var1, var2, var3, consumer );
+    }
+
+    public static < T, U, V > TriPredicate< T, U, V > triPredicate( ExceptionalTriPredicate< T, U, V > predicate ) {
+        return ( var1, var2, var3 ) -> ExceptionalTriPredicateExecutor.execute( var1, var2, var3, predicate );
+    }
+
+    public static < T, U, V, R > TriFunction< T, U, V, R > triFunction( ExceptionalTriFunction< T, U, V, R > function ) {
+        return ( var1, var2, var3 ) -> ExceptionalTriFunctionExecutor.execute( var1, var2, var3, function );
     }
 
 }
