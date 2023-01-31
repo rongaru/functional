@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- Project Description -->
-    <version>1.0.0</version>
+    <version>1.0</version>
     <artifactId>functional</artifactId>
     <groupId>io.github.rongaru</groupId>
     <name>Java Functional Interfaces</name>
